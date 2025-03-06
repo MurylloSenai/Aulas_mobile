@@ -1,5 +1,9 @@
 import { Text, View, StyleSheet, TextInput, Pressable } from "react-native";
 
+
+//funçao tem retorno metodo nao;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 // export default function App(){
 //     return(
 //         <View>
