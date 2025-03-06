@@ -1,5 +1,9 @@
 import { Button, Text, View, StyleSheet, TextInput } from "react-native";
 
+
+//funçao tem retorno metodo nao;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 // export default function App(){
 //     return(
 //         <View>
