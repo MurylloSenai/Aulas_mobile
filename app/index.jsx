@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet, TextInput } from "react-native";
+import { Text, View, StyleSheet, TextInput, Pressable } from "react-native";
 
 // export default function App(){
 //     return(
@@ -17,7 +17,7 @@ export default function login(){
     return(
         <View>
             <View>
-                <Text>Entrar</Text>
+                <Text>Login</Text>
             </View>
             <View>
                 <TextInput
@@ -26,9 +26,12 @@ export default function login(){
                 <TextInput
                     placeholder="senha"
                 />
+                <Text>esqueci a senha</Text>
             </View>
             <View>
-             <Button title="entrar" />
+             <Pressable>
+                <Text>Entrar</Text>
+             </Pressable>
              <Text>cadastre-se</Text>
             </View>
         </View>
