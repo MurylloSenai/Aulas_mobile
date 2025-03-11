@@ -3,209 +3,114 @@
 // npm run start --clear
 
 
-
+import styled from "styled-components/native";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 
 
 export default function Login() {
   return (
-    <View style={styles.container}>
-  
-      <View style={styles.header}>
-        <Text style={styles.title}>Login</Text>
-        <Image
-          source={require('./assets/images/user-profile-icon-free-vector.jpg')} // Atualize o caminho conforme necessário
-          style={styles.Icon}
-        />
-      </View>
+    <Container>
+      <Header>
+        <Title>Login</Title>
+        <Icon source={require('./icon_perfil.png')} />
+      </Header>
 
-     {/* inputs para escrever */}
-      <View style={styles.campos}>
-        <TextInput
-          style={styles.campoTexto}
-          placeholder="email..."
-        />
-        <TextInput
-          style={styles.campoTexto}
-          placeholder="********"
-        />
-        <Text style={styles.esqueci_senha}>esqueci a senha</Text>
-      </View>
-      
+      <Campos>
+        <CampoTexto placeholder="email..." text-align-vertical="center" />
+        <CampoTexto placeholder="********" />
+        <EsqueciSenha>esqueci a senha</EsqueciSenha>
+      </Campos>
 
-      {/* acoes fa tela */}
-      <View style={styles.acoes}>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>entrar</Text>
-        </Pressable>
-        <Text style={styles.cadastrar}>Cadastre-se</Text>
-      </View>
-
-    </View>
+      <Acoes>
+        <Button>
+          <ButtonText>entrar</ButtonText>
+        </Button>
+        <Cadastrar>Cadastre-se</Cadastrar>
+      </Acoes>
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#1B263B",
-    padding: 26,
-  },
+const Container = styled.View`
+  flex: 1;
+  background-color: #1b263b;
+  padding: 26px;
+`;
 
-  header: {
-    marginTop: 80,
-    marginBottom: 110,
-  },
+const Header = styled.View`
 
-  title: {
-    fontSize: 60,
-    color: "#EDF2F4",
-    fontWeight: 'semibold',
-  },
-  
-  profileIcon: {
-    width: 60, // Ajuste a largura da imagem
-    height: 60, // Ajuste a altura da imagem
-    marginTop: 10,
-  },
+  flex-direction: row; 
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  margin-top: 80px;
+  margin-bottom: 110px;
+  margin-left: 6px;
+  gap: 20px; /* Espaçamento entre o título e o ícone */
+`;
 
-  campos: {
-    gap: 15,
-    alignItems: 'center',
-  },
-  
-  campoTexto: {
-    width: 344,
-    height: 60,
-    backgroundColor: "#EDF2F4",
-    borderRadius: 20,
-    textAlignVertical: 'center',
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: "#000",
-    borderColor: "#88CFEC",
-    borderWidth: 3,
-  },
+const Title = styled.Text`
+  font-size: 60px;
+  color: #edf2f4;
+  font-weight: 600;
+`;
 
-  esqueci_senha: {
-    color: '#88CFEC',
-    alignSelf: 'flex-end',
-    marginRight: 16,
-    marginBottom: 20,
-    fontSize: 14,
-  },
-  
-  acoes: {
-    gap: 20,
-    marginTop: 10,
-  },
+const Icon = styled.Image`
+  width: 60px;
+  height: 60px;
+`;
 
-  button: {
-    width: 294, 
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center', 
-    backgroundColor: '#88CFEC',
-    borderRadius: 20,
-    padding: 10,
-    alignSelf: 'center', 
-},
+const Campos = styled.View`
+  gap: 15px;
+  align-items: center;
+`;
 
-  buttonText: {
-    color: "#000",
-    fontSize: 25,
-    fontWeight: 'regular',
-    
-  },
-  cadastrar: {
-    color: "#88CFEC",
-    fontSize: 14,
-    textAlign: 'center'
-  },
-});
+const CampoTexto = styled.TextInput`
+  width: 344px;
+  height: 60px;
+  background-color: #edf2f4;
+  border-radius: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 16px;
+  color: #000;
+  border-color: #88cfec;
+  border-width: 3px;
+`;
 
 
-// const container = styled.View `
-//   flex: 1,
-//   backgroundColor: "#1B263B",
-//   padding: 26,
-// `
+const EsqueciSenha = styled.Text`
+  color: #88cfec;
+  align-self: flex-end;
+  margin-right: 16px;
+  margin-bottom: 20px;
+  font-size: 14px;
+`;
+
+const Acoes = styled.View`
+  gap: 20px;
+  margin-top: 10px;
+`;
+
+const Button = styled.Pressable`
+  width: 294px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: #88cfec;
+  border-radius: 20px;
+  padding: 10px;
+  align-self: center;
+`;
+
+const ButtonText = styled.Text`
+  color: #000;
+  font-size: 25px;
+  font-weight: 400;
+`;
+
+const Cadastrar = styled.Text`
+  color: #88cfec;
+  font-size: 14px;
+  text-align: center;
+`;
 
 
-// const header = styled.View`
-//    rginTop: 80,
-    // marginBottom: 110,
-// `
-
-// const title = styled.View `
-//    fontSize: 60,
-    // color: "#EDF2F4",
-    // fontWeight: 'semibold',
-// `
-
-// const Icon = styled.View`
-//    width: 60, // Ajuste a largura da imagem
-    // height: 60, // Ajuste a altura da imagem
-    // marginTop: 10,
-// ` 
-
-
-// const campos = styled.View`
-//    gap: 15,
-    // alignItems: 'center',
-// `
-
-// const campoTexto = styled.View`
-//    width: 344,
-    // height: 60,
-    // backgroundColor: "#EDF2F4",
-    // borderRadius: 20,
-    // textAlignVertical: 'center',
-    // paddingHorizontal: 16,
-    // fontSize: 16,
-    // color: "#000",
-    // borderColor: "#88CFEC",
-    // borderWidth: 3,
-// ` 
-
-
-// const esqueci_senha = styled.View`
-//   color: '#88CFEC',
-    // alignSelf: 'flex-end',
-    // marginRight: 16,
-    // marginBottom: 20,
-    // fontSize: 14,
-// ` 
-
-
-// const acoes = styled.View `
-//  gap: 20,
-    // marginTop: 10,
-// `
-
-// const button = styled.View `
-//    width: 294, 
-    // height: 50,
-    // alignItems: 'center',
-    // justifyContent: 'center', 
-    // backgroundColor: '#88CFEC',
-    // borderRadius: 20,
-    // padding: 10,
-    // alignSelf: 'center', 
-// `
-
-
-// const buttonText = styled.View´
-//   color: "#000",
-    // fontSize: 25,
-    // fontWeight: 'regular',
-// ´ 
-
-
-// const cadastrar = styled.View´
-//    color: "#88CFEC",
-//  fontSize: 14,
-//  textAlign: 'center'
-// ´
-// 
-// 
