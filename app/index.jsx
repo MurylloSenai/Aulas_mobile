@@ -3,13 +3,24 @@
 // npm run start --clear
 
 
-import styled from "styled-components/native";
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
+
+
+import styled from "styled-components/native";
+import Titulo from "../components/Titulo/titulo";
 
 
 export default function Login() {
   return (
     <Container>
+      <Titulo 
+          texto ="Entrar"
+          flag={true}
+      />
+      <Titulo
+          texto={"Bem vindo ao app"}
+          flag={false}
+      />
       <Header>
         <Title>Login</Title>
         <Icon source={require('./icon_perfil.png')} />
