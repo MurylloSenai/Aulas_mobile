@@ -8,9 +8,19 @@ import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 
 import styled from "styled-components/native";
 import Titulo from "../components/Titulo/titulo";
-
+import { useEffect, useState } from "react";
+import { TextInputProps } from "react-native";
+import CampoTexto from "@/components/Input/input";
 
 export default function Login() {
+
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+
+    useEffect(() => {
+        console.log(email)
+    },[email])
+
   return (
     <Container>
       <Titulo 
@@ -27,8 +37,16 @@ export default function Login() {
       </Header>
 
       <Campos>
-        <CampoTexto placeholder="email..." text-align-vertical="center" />
-        <CampoTexto placeholder="********" />
+      <CampoTexto 
+                erro={true}
+                placeholder="Digite seu email..."
+                onChangeText={Text => setEmail(Text)}
+            />
+            <CampoTexto 
+                erro={false}
+                placeholder="Digite sua senha..."
+                onChangeText={Text => setSenha(Text)}
+            />
         <EsqueciSenha>esqueci a senha</EsqueciSenha>
       </Campos>
 
@@ -73,20 +91,6 @@ const Campos = styled.View`
   gap: 15px;
   align-items: center;
 `;
-
-const CampoTexto = styled.TextInput`
-  width: 344px;
-  height: 60px;
-  background-color: #edf2f4;
-  border-radius: 20px;
-  padding-left: 16px;
-  padding-right: 16px;
-  font-size: 16px;
-  color: #000;
-  border-color: #88cfec;
-  border-width: 3px;
-`;
-
 
 const EsqueciSenha = styled.Text`
   color: #88cfec;
