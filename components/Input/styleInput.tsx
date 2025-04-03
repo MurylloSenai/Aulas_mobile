@@ -15,6 +15,6 @@ type camposDeTextoProps = {
   font-size: 16px;
   color: #000;
   /* border-color: #88cfec; */
-  border: 2px solid ${({ erro }: { erro: boolean }) => erro ? '#e03e59' : '#88cfec'};
+  border: 2px solid ${({ erro }: { erro: boolean }) => erro ? '#c30323' : '#88cfec'};
   border-width: 3px;
 `;
