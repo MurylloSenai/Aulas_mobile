@@ -5,7 +5,7 @@
 
 import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 
-
+import { Ionicons } from "@expo/vector-icons"; // Para projetos Expo
 import styled from "styled-components/native";
 import Titulo from "../components/Titulo/titulo";
 import { useEffect, useState } from "react";
@@ -14,17 +14,60 @@ import CampoTexto from "@/components/Input/input";
 
 export default function Login() {
 
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
+    const [email, setEmail] = useState('example@example.com')
+    const [ErrorEmail, setErrorEMail] = useState(false)
 
-    useEffect(() => {
-        console.log(email)
-    },[email])
+    const [senha, setSenha] = useState('@Example123')
+    const [ErrorSenha, setErrorSenha] = useState(false)
+    const [mostrarSenha, setMostrarSenha] = useState(false);
+
+
+    useEffect(()=>{
+
+      // Significa que a o texto que a pessoa digitar deve ser um email valido
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if(!emailRegex.test(email))
+      {
+          // Se o texto não incluir o caractere @ e tiver menos que 3 carateres
+          // sera mostrado o campo como incorreto
+          setErrorEMail(true)
+      }
+      else{
+
+          // Quando a pessoa inserir um email valido, as bordas vermelhas vão sumir
+          setErrorEMail(false)
+      }
+  },[email])
+
+  useEffect(()=>{
+    //  Usando expressão regular para diminuir a quantidade 
+    //  de condicionais para testar a senha
+    //  Esse Regex testa se a senha:
+    //  * Pelo menos 8 caracteres
+    //  * Pelo menos uma letra maiúscula
+    //  * Pelo menos um número
+    //  * Pelo menos um caractere especial (!@#$%^&*)
+    
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    if(!passwordRegex.test(senha))
+    {
+        setErrorSenha(true)
+    }
+    else
+    {
+        setErrorSenha(false)
+    }
+},[senha])
+
+useEffect(() => {
+  console.log(`Visibilidade da senha alterada: ${mostrarSenha ? "Mostrar" : "Ocultar"}`);
+}, [mostrarSenha]);
 
   return (
     <Container>
       <Titulo 
-          texto ="Entrar"
+          texto ="Olá"
           flag={true}
       />
       <Titulo
@@ -37,16 +80,38 @@ export default function Login() {
       </Header>
 
       <Campos>
+      <EmailContainer>
       <CampoTexto 
-                erro={true}
+                erro={ErrorEmail}
                 placeholder="Digite seu email..."
                 onChangeText={Text => setEmail(Text)}
             />
-            <CampoTexto 
-                erro={false}
-                placeholder="Digite sua senha..."
-                onChangeText={Text => setSenha(Text)}
+            {ErrorEmail ? 
+              <TextErrorHint>Email Invalido!!</TextErrorHint>
+              :
+              null  
+          }
+           </EmailContainer>
+        <SenhaContainer>
+          <CampoTexto 
+            erro={false}
+            placeholder="Digite sua senha..."
+            onChangeText={(text) => setSenha(text)}
+            secureTextEntry={!mostrarSenha}
+          />
+          <Pressable onPress={() => setMostrarSenha(!mostrarSenha)} style={{ position: 'absolute', right: 20, top: 18 }}>
+            <Ionicons
+              name={mostrarSenha ? "eye-off" : "eye"} // Ícone de olho
+              size={24}
+              color="#88cfec"
             />
+          </Pressable>
+            {ErrorSenha ?
+              <TextErrorHint>Senha Incorreta!!</TextErrorHint>
+              :
+              null
+          }
+        </SenhaContainer>
         <EsqueciSenha>esqueci a senha</EsqueciSenha>
       </Campos>
 
@@ -59,7 +124,6 @@ export default function Login() {
     </Container>
   );
 }
-
 const Container = styled.View`
   flex: 1;
   background-color: #1b263b;
@@ -67,13 +131,12 @@ const Container = styled.View`
 `;
 
 const Header = styled.View`
-
-  flex-direction: row; 
-  align-items: center; /* Alinha os itens verticalmente ao centro */
+  flex-direction: row;
+  align-items: center;
   margin-top: 80px;
   margin-bottom: 110px;
   margin-left: 6px;
-  gap: 20px; /* Espaçamento entre o título e o ícone */
+  gap: 20px;
 `;
 
 const Title = styled.Text`
@@ -92,11 +155,17 @@ const Campos = styled.View`
   align-items: center;
 `;
 
+const SenhaContainer = styled.View`
+  position: relative;
+  width: 100%;
+  align-items: center;
+`;
+
 const EsqueciSenha = styled.Text`
   color: #88cfec;
   align-self: flex-end;
   margin-right: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-size: 14px;
 `;
 
@@ -128,4 +197,17 @@ const Cadastrar = styled.Text`
   text-align: center;
 `;
 
+const TextErrorHint = styled.View`
+  font-size: 14px;
+  color: #ca0717;
+  margin-right: 210px;
+`;
 
+const Olho = styled.Pressable`
+color:  #88cfec;
+`
+const EmailContainer = styled.View`
+ position: relative;
+  width: 100%;
+  align-items: center;
+`
